@@ -1,0 +1,2 @@
+import { Outlet, useLocation } from 'react-router-dom'; import { Header } from './Header'; import { Sidebar } from './Sidebar'
+export function Layout() { const { pathname } = useLocation(); const authPage = pathname === '/login' || pathname === '/signup'; return <><Header/><main className={`mx-auto flex w-full items-start gap-6 ${authPage ? 'max-w-none p-0' : 'max-w-6xl px-4 py-6'}`}><div className="min-w-0 flex-1"><Outlet/></div>{!authPage && <Sidebar/>}</main></> }

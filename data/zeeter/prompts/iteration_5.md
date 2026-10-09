@@ -1,0 +1,3 @@
+Remove public collection sharing: collections are private again, existing share links must stop exposing collection data, and no screen should offer sharing controls. Keep every owner’s saved posts, collection memberships, names, and notes unchanged, including previously shared collections. Keep the ordinary public profiles, public posts, follows, likes, and comments working.
+
+Preserve the continuity member's existing Zeeter Continuity collection and both saved posts and notes. The previously published /shared/zeeter-continuity path must stop opening the collection for both guests and signed-in nonowners.

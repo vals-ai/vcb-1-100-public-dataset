@@ -1,0 +1,3 @@
+Add a private Saved area where signed-in members can save and unsave posts from the feed, profiles, and post detail, then find their saved posts without changing likes or follows. Each saved post can have a private note of up to 500 characters; repeated saves must produce one entry, and saved posts must show the current source text after edits. Guests and other members must not see a member’s Saved area or notes.
+
+Demo data: create member ztcontinuity with email ztcontinuity@example.com and password ZeeterPass123!. As this member, create exactly one source post 'Zeeter continuity A' and one 'Zeeter continuity B'; save them with private notes 'Keep A' and 'Keep B'. Leave these records in the database for later releases.

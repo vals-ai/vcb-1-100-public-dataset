@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 20% 99%; --foreground: 240 10% 10%;
+    --card: 0 0% 100%; --card-foreground: 240 10% 10%;
+    --muted: 240 10% 95%; --muted-foreground: 240 5% 43%;
+    --primary: 262 83% 58%; --primary-foreground: 0 0% 100%;
+    --secondary: 240 8% 92%; --secondary-foreground: 240 10% 16%;
+    --accent: 250 100% 97%; --accent-foreground: 262 83% 45%;
+    --border: 240 10% 90%; --ring: 262 83% 58%;
+    --destructive: 0 72% 51%; --destructive-foreground: 0 0% 100%;
+    --like: 8 82% 61%; --radius: 0.75rem;
+  }
+  .dark {
+    --background: 240 10% 7%; --foreground: 240 10% 94%;
+    --card: 240 10% 10%; --card-foreground: 240 10% 94%;
+    --muted: 240 8% 15%; --muted-foreground: 240 5% 64%;
+    --primary: 262 90% 68%; --primary-foreground: 240 10% 8%;
+    --secondary: 240 8% 17%; --secondary-foreground: 240 10% 92%;
+    --accent: 262 35% 18%; --accent-foreground: 262 90% 75%;
+    --border: 240 8% 20%; --ring: 262 90% 68%;
+    --destructive: 0 62% 48%; --destructive-foreground: 0 0% 100%;
+    --like: 8 85% 67%;
+  }
+  * { @apply border-border; }
+  html { @apply bg-background; }
+  body { @apply m-0 min-h-screen bg-background text-foreground antialiased; font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
+  button, input, textarea { font: inherit; }
+  :focus-visible { @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background; }
+}
+
+@layer utilities {
+  .auth-gradient { background-image: radial-gradient(circle at 15% 10%, hsl(var(--primary) / .16), transparent 36%), radial-gradient(circle at 90% 80%, hsl(var(--like) / .12), transparent 32%); }
+}

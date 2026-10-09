@@ -1,0 +1,2 @@
+import { Link } from 'react-router-dom'; import { Button } from '../components/ui/button'; import { Card } from '../components/ui/card'
+export default function NotFound(){return <Card className="mx-auto max-w-xl p-12 text-center"><p className="text-5xl font-black text-primary">404</p><h1 className="mt-4 text-xl font-bold">Page not found</h1><p className="mt-2 text-muted-foreground">That page has wandered off the timeline.</p><Button className="mt-6"><Link to="/">Back home</Link></Button></Card>}
