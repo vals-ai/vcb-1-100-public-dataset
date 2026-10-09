@@ -1,0 +1,1000 @@
+task_id: zeeter
+iterations:
+- id: iteration_1
+  title: Private saved posts
+  change_type: additive
+  workflows:
+    iteration_1_delta_1:
+      id: iteration_1_delta_1
+      title: Save from feed
+      purpose: Verify save from feed using only this workflow's accounts and records. Count logical saves and memberships through available pagination or groups; repeated presentations are not extra records.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt1w1owner', email 'zt1w1owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt1w1owner' only if a display name is required and empty.
+      - 2. Publish 'zt1w1alpha source post' from the home feed and save it there.
+      - 3. Open Saved and confirm exactly one saved entry for that source post.
+      - 4. Reload Saved and confirm the same entry remains.
+      - 5. Return to the home feed, unsave that post there, and confirm it is absent from Saved; its ordinary source post remains unchanged on your public profile.
+    iteration_1_delta_2:
+      id: iteration_1_delta_2
+      title: Save from profile
+      purpose: Verify save from profile using only this workflow's accounts and records. Count logical saves and memberships through available pagination or groups; repeated presentations are not extra records.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt1w2owner', email 'zt1w2owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt1w2owner' only if a display name is required and empty.
+      - 2. Publish 'zt1w2alpha source post'; open your public profile and save the post there.
+      - 3. Open Saved and confirm exactly one entry for that source post.
+      - 4. Return to your profile and unsave the post there; confirm its saved entry disappears while the source post stays unchanged.
+    iteration_1_delta_3:
+      id: iteration_1_delta_3
+      title: Save from detail
+      purpose: Verify save from detail using only this workflow's accounts and records. Count logical saves and memberships through available pagination or groups; repeated presentations are not extra records.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt1w3owner', email 'zt1w3owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt1w3owner' only if a display name is required and empty.
+      - 2. Publish 'zt1w3alpha source post', open its original post detail, and record that app URL.
+      - 3. Save the post from its detail view; open Saved and confirm exactly one entry for that source post.
+      - 4. Reopen the same original post detail through its recorded URL or available app entry point and confirm the same author and source text; unsave the post from this detail view.
+      - 5. Open Saved and confirm the entry is absent, then reopen the same original post detail through its recorded URL or available app entry point and confirm the source post still exists unchanged.
+    iteration_1_delta_4:
+      id: iteration_1_delta_4
+      title: Repeated saves
+      purpose: Verify repeated saves using only this workflow's accounts and records. Count logical saves and memberships through available pagination or groups; repeated presentations are not extra records.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt1w4owner', email 'zt1w4owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt1w4owner' only if a display name is required and empty.
+      - 2. Publish 'zt1w4alpha source post' and save it from the feed.
+      - 3. Open that original post's detail and profile views; use any available Save action again. A saved-state toggle or unavailable repeat action must remain in the saved state; do not intentionally unsave here.
+      - 4. Reload Saved and confirm exactly one saved entry for 'zt1w4alpha source post', with no duplicate for that source.
+      - 5. Unsave that post, then save it again from its original detail; reload Saved and confirm exactly one entry again.
+    iteration_1_delta_5:
+      id: iteration_1_delta_5
+      title: Private note persists
+      purpose: Verify private note persists using only this workflow's accounts and records. For authenticated owner note-value checks, use the available full-note view or editor.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt1w5owner', email 'zt1w5owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt1w5owner' only if a display name is required and empty.
+      - 2. Publish and save 'zt1w5alpha source post'. In Saved, add private note 'Private zt1w5 note'.
+      - 3. Reload Saved and confirm that exact note remains on this saved entry.
+      - 4. Edit the note to 'Revised zt1w5 note'; complete the edit through its provided action or autosave and reload, then confirm the full revised note persists on the same entry.
+    iteration_1_delta_6:
+      id: iteration_1_delta_6
+      title: Note length limit
+      purpose: Verify note length limit using only this workflow's accounts and records. For authenticated owner note-value checks, use the available full-note view or editor.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt1w6owner', email 'zt1w6owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt1w6owner' only if a display name is required and empty.
+      - 2. Publish and save 'zt1w6alpha source post'.
+      - 3. Enter exactly 500 copies of X as its private note and complete entry through its provided action or autosave.
+      - 4. Reload Saved and inspect the full persisted note through its available owner note view or editor; confirm it consists of exactly 500 X characters.
+      - 5. Try replacing it with exactly 501 copies of Y and submit if the UI allows submission; then reload Saved.
+      - 6. Inspect the full persisted note through its available owner note view or editor and confirm its length does not exceed 500 characters; input limiting, rejection, or truncation are allowed without a required recovery value.
+    iteration_1_delta_7:
+      id: iteration_1_delta_7
+      title: Account isolation
+      purpose: Verify account isolation using only this workflow's accounts and records. For authenticated owner note-value checks, use the available full-note view or editor.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt1w7owner', email 'zt1w7owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt1w7owner' only if a display name is required and empty.
+      - 2. Publish and save 'zt1w7alpha source post' with private note 'Secret zt1w7'.
+      - 3. Open your Saved entry and confirm its post and private note are visible; record the owning Saved app-page URL.
+      - 4. Sign out if signed in, then register username 'zt1w7reader', email 'zt1w7reader@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt1w7reader' only if a display name is required and empty.
+      - 5. Visit the recorded owner Saved URL and inspect Saved through this reader's own navigation; confirm the owner's saved entry and note are unavailable. The reader's own empty Saved area may remain accessible.
+      - 6. Open the public profile for username 'zt1w7owner' through available app links or navigation and the original post detail; confirm ordinary source text is public while private note 'Secret zt1w7' is absent.
+    iteration_1_delta_8:
+      id: iteration_1_delta_8
+      title: Unsave leaves source
+      purpose: Verify unsave leaves source using only this workflow's accounts and records.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt1w8owner', email 'zt1w8owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt1w8owner' only if a display name is required and empty.
+      - 2. Publish and save 'zt1w8alpha source post' with private note 'Retain source zt1w8'; unsave the post.
+      - 3. Confirm this post has no entry in Saved; open your public profile and confirm the original text 'zt1w8alpha source post' remains unchanged.
+    iteration_1_regression_1:
+      id: iteration_1_regression_1
+      title: Ordinary post editing
+      purpose: Verify ordinary post editing using only this workflow's accounts and records.
+      is_regression: true
+      steps:
+      - 1. Sign out if signed in, then register username 'zt1w9owner', email 'zt1w9owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt1w9owner' only if a display name is required and empty.
+      - 2. Publish 'zt1w9alpha source post'. Edit it to 'Edited zt1w9alpha source post'.
+      - 3. Open your public profile and confirm the revised text. Delete the post and confirm it disappears from your profile.
+    iteration_1_regression_2:
+      id: iteration_1_regression_2
+      title: Like and comment
+      purpose: Verify like and comment using only this workflow's accounts and records.
+      is_regression: true
+      steps:
+      - 1. Sign out if signed in, then register username 'zt1w10owner', email 'zt1w10owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt1w10owner' only if a display name is required and empty.
+      - 2. Publish 'zt1w10alpha source post'. Sign out and register username 'zt1w10reader', email 'zt1w10reader@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt1w10reader' only if a display name is required and empty.
+      - 3. Open the author's public profile, like that post, and comment 'Comment zt1w10'. Confirm the like state and comment appear on post detail.
+    iteration_1_regression_3:
+      id: iteration_1_regression_3
+      title: Guest action restriction
+      purpose: Verify guest action restriction using only this workflow's accounts and records.
+      is_regression: true
+      steps:
+      - 1. Sign out if signed in, then register username 'zt1w11owner', email 'zt1w11owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt1w11owner' only if a display name is required and empty.
+      - 2. Publish 'zt1w11alpha source post' and sign out.
+      - 3. Open the author's public profile and post detail. Confirm the post is visible, but liking and commenting require sign-in.
+    iteration_1_regression_4:
+      id: iteration_1_regression_4
+      title: Keyword search
+      purpose: Verify keyword search using only this workflow's accounts and records.
+      is_regression: true
+      steps:
+      - 1. Sign out if signed in, then register username 'zt1w12owner', email 'zt1w12owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt1w12owner' only if a display name is required and empty.
+      - 2. Publish 'zt1w12alpha source post' and another post 'Different zt1w12'.
+      - 3. Search for the exact keyword 'zt1w12alpha'. Confirm only 'zt1w12alpha source post' matches among these two posts.
+    iteration_1_continuity_a:
+      id: iteration_1_continuity_a
+      title: Verify generation-created continuity A
+      purpose: Verify generation-created continuity A using generation-created continuity records; do not create or repair missing records. For authenticated owner note-value checks, use the available full-note view or editor. Count logical saves and memberships through available pagination or groups; repeated presentations are not extra records.
+      is_regression: false
+      steps:
+      - 1. Use this workflow's single fresh browser session. Sign in as the existing demo member ztcontinuity with password ZeeterPass123!. Do not sign out, create, edit, save, or repair continuity records during this check.
+      - 2. Open Saved and locate the existing source post 'Zeeter continuity A'. Confirm exactly one saved entry has private note 'Keep A'. Missing data is a failure; do not create replacements.
+      - 3. Reload and confirm the same existing saved entry and note remain. Open its original source post through available app links, search, or pagination and confirm its content remains 'Zeeter continuity A'.
+      - 4. Using available app search, pagination, and source views, confirm this member owns exactly one original source post with full body 'Zeeter continuity A', without creating or modifying a post.
+    iteration_1_continuity_b:
+      id: iteration_1_continuity_b
+      title: Verify generation-created continuity B
+      purpose: Verify generation-created continuity B using generation-created continuity records; do not create or repair missing records. For authenticated owner note-value checks, use the available full-note view or editor. Count logical saves and memberships through available pagination or groups; repeated presentations are not extra records.
+      is_regression: false
+      steps:
+      - 1. Use this workflow's single fresh browser session. Sign in as the existing demo member ztcontinuity with password ZeeterPass123!. Do not sign out, create, edit, save, or repair continuity records during this check.
+      - 2. Open Saved and locate the existing source post 'Zeeter continuity B'. Confirm exactly one saved entry has private note 'Keep B'. Missing data is a failure; do not create replacements.
+      - 3. Reload and confirm the same existing saved entry and note remain. Open its original source post through available app links, search, or pagination and confirm its content remains 'Zeeter continuity B'.
+      - 4. Using available app search, pagination, and source views, confirm this member owns exactly one original source post with full body 'Zeeter continuity B', without creating or modifying a post.
+    iteration_1_source_edit:
+      id: iteration_1_source_edit
+      title: Saved reflects source edits
+      purpose: Cover live source text for another member without changing the private note. For authenticated owner note-value checks, use the available full-note view or editor.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt1editowner', email 'zt1editowner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt1editowner' only if a display name is required and empty.
+      - 2. Publish 'zt1edit original source' and record its original post-detail URL.
+      - 3. Sign out if signed in, then register username 'zt1editreader', email 'zt1editreader@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt1editreader' only if a display name is required and empty.
+      - 4. Visit the public profile for username 'zt1editowner' through available app links or navigation, save 'zt1edit original source', and add private note 'Reader edit note'.
+      - 5. Sign out if currently signed in, then sign in with username 'zt1editowner' and password 'ZeeterPass123!'.
+      - 6. Edit the original post to 'zt1edit revised source' using its available owner editing action and complete the edit through the provided action or autosave.
+      - 7. Sign out if currently signed in, then sign in with username 'zt1editreader' and password 'ZeeterPass123!'.
+      - 8. Reload Saved and inspect this saved entry’s current source preview or body; it must correspond to 'zt1edit revised source', with private note 'Reader edit note' retained. Expand the entry’s associated full current content if abbreviated; separately labeled edit history may contain earlier versions.
+      - 9. Reopen the same source post through its recorded detail URL or available app entry point and confirm the same author and revised current body.
+    iteration_1_guest_saved_privacy:
+      id: iteration_1_guest_saved_privacy
+      title: Guest cannot access Saved or private notes
+      purpose: Use a positive owner Saved read before guest access. For authenticated owner note-value checks, use the available full-note view or editor.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt1guestowner', email 'zt1guestowner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt1guestowner' only if a display name is required and empty.
+      - 2. Publish and save 'zt1guest public source' with note 'zt1guest private note'; confirm both are accessible through the owner's Saved entry and record its app-page URL.
+      - 3. Sign out and visit that Saved URL; confirm the owner’s saved entry and private note are inaccessible and no save or note action can be completed without signing in. Sign-in-gated controls are allowed.
+      - 4. Browse the public profile for username 'zt1guestowner' through available app links or navigation and this ordinary post's detail as a guest; confirm the source text remains public and the private note is absent.
+      - 5. Inspect any guest Save or Saved entry point; it must require sign-in or be unavailable, and it must not save a post or expose private notes.
+    iteration_1_social_state:
+      id: iteration_1_social_state
+      title: Saving preserves likes and follows
+      purpose: Verify save and unsave preserve both inactive and active social state.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt1socialowner', email 'zt1socialowner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt1socialowner' only if a display name is required and empty.
+      - 2. Publish 'zt1social public source'.
+      - 3. Sign out if signed in, then register username 'zt1socialreader', email 'zt1socialreader@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt1socialreader' only if a display name is required and empty.
+      - 4. Open the public profile for username 'zt1socialowner' through available app links or navigation and this source post’s detail. If needed, use available Unlike and Unfollow actions to establish that this reader has not liked the post and is not following the author; confirm these inactive states before saving.
+      - 5. Save the post; return to its detail and the author’s profile and confirm the reader’s unliked and unfollowed states are unchanged.
+      - 6. Unsave the post and confirm the reader’s same unliked and unfollowed states remain unchanged.
+      - 7. Use ordinary member controls to establish that this reader likes the post and follows the author, acting only if each state is inactive; confirm both active states.
+      - 8. Save and then unsave the post; revisit its detail and author profile and confirm the reader is still liking and following.
+- id: iteration_2
+  title: Collections without losing saved posts
+  change_type: schema_migration
+  workflows:
+    iteration_2_delta_1:
+      id: iteration_2_delta_1
+      title: Create and rename
+      purpose: Verify create and rename using only this workflow's accounts and records.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt2w1owner', email 'zt2w1owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt2w1owner' only if a display name is required and empty.
+      - 2. Open Saved, create collection 'First zt2w1', and rename it to 'Renamed zt2w1'.
+      - 3. Reload Saved and confirm 'Renamed zt2w1' exists while this owner's old collection name 'First zt2w1' does not.
+    iteration_2_delta_2:
+      id: iteration_2_delta_2
+      title: Migrate existing continuity A into Unfiled
+      purpose: Migrate existing continuity A into Unfiled using generation-created continuity records; do not create or repair missing records. For authenticated owner note-value checks, use the available full-note view or editor. Count logical saves and memberships through available pagination or groups; repeated presentations are not extra records.
+      is_regression: false
+      steps:
+      - 1. Use this workflow's single fresh browser session. Sign in as the existing demo member ztcontinuity with password ZeeterPass123!. Do not sign out, create, edit, save, or repair continuity records during this check. For owner note checks from a collection, access the same saved record's private note through Saved or an available owner note view; still verify its membership in the named collection.
+      - 2. Open Saved and locate the existing source post 'Zeeter continuity A'. Confirm exactly one saved entry has private note 'Keep A'. Missing data is a failure; do not create replacements.
+      - 3. Reload and confirm the same existing saved entry and note remain. Open its original source post through available app links, search, or pagination and confirm its content remains 'Zeeter continuity A'.
+      - 4. Open Unfiled. Confirm the existing 'Zeeter continuity A' save and its 'Keep A' note are present without creating a new save.
+    iteration_2_delta_3:
+      id: iteration_2_delta_3
+      title: Multiple memberships
+      purpose: Verify multiple memberships using only this workflow's accounts and records. Count logical saves and memberships through available pagination or groups; repeated presentations are not extra records.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt2w3owner', email 'zt2w3owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt2w3owner' only if a display name is required and empty.
+      - 2. Publish and save 'zt2w3alpha source post'; open Saved and create collections 'A zt2w3' and 'B zt2w3'.
+      - 3. Add the same saved post to both collections.
+      - 4. Open A and B and confirm each contains exactly one entry for this source; Saved contains exactly one save for it, and Unfiled does not contain it.
+    iteration_2_delta_4:
+      id: iteration_2_delta_4
+      title: Remove one membership
+      purpose: Verify remove one membership using only this workflow's accounts and records.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt2w4owner', email 'zt2w4owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt2w4owner' only if a display name is required and empty.
+      - 2. Publish and save 'zt2w4alpha source post'; create collections 'A zt2w4' and 'B zt2w4', then add that post to both.
+      - 3. Remove its membership only from 'A zt2w4'.
+      - 4. Confirm it is absent from A but remains in B and Saved; its original source post still exists unchanged.
+    iteration_2_delta_5:
+      id: iteration_2_delta_5
+      title: Shared private note
+      purpose: Verify shared private note using only this workflow's accounts and records. For authenticated owner note-value checks, use the available full-note view or editor. Count logical saves and memberships through available pagination or groups; repeated presentations are not extra records.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt2w5owner', email 'zt2w5owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt2w5owner' only if a display name is required and empty. For owner note checks from a collection, access the same saved record's private note through Saved or an available owner note view; still verify its membership in the named collection.
+      - 2. Publish and save 'zt2w5alpha source post'; create collections 'A zt2w5' and 'B zt2w5', then add the post to both.
+      - 3. Use this saved post's available private-note controls through Saved or an owner collection view; set its note to 'Shared note zt2w5' and complete the edit through its provided action or autosave.
+      - 4. Open A and B and confirm both retain exactly one membership for that same saved post. Access that saved post's private note through Saved or the provided owner note view and confirm 'Shared note zt2w5' is the same note for both memberships; reload and confirm this note and both memberships persist.
+    iteration_2_delta_6:
+      id: iteration_2_delta_6
+      title: Delete collection retains saves
+      purpose: Verify delete collection retains saves using only this workflow's accounts and records. For authenticated owner note-value checks, use the available full-note view or editor.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt2w6owner', email 'zt2w6owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt2w6owner' only if a display name is required and empty. For owner note checks from a collection, access the same saved record's private note through Saved or an available owner note view; still verify its membership in the named collection.
+      - 2. Publish and save 'zt2w6alpha source post' with note 'Retained zt2w6'; create collection 'Delete zt2w6' and add this save only to it.
+      - 3. Delete that collection through its available owner action.
+      - 4. Confirm this save and private note remain in Saved and Unfiled, the deleted collection is absent, and the original source post remains on your public profile.
+    iteration_2_delta_7:
+      id: iteration_2_delta_7
+      title: Duplicate membership
+      purpose: Verify duplicate membership using only this workflow's accounts and records. Count logical saves and memberships through available pagination or groups; repeated presentations are not extra records.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt2w7owner', email 'zt2w7owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt2w7owner' only if a display name is required and empty.
+      - 2. Publish and save 'zt2w7alpha source post'; create collection 'Once zt2w7' and add this saved post.
+      - 3. Try adding the same save to 'Once zt2w7' again through any available membership action; if it is already assigned or unavailable, retain that existing membership.
+      - 4. Reload the collection and Saved and confirm exactly one membership and one saved entry for this source, with no duplicate.
+    iteration_2_delta_8:
+      id: iteration_2_delta_8
+      title: Collection validation
+      purpose: Verify collection validation using only this workflow's accounts and records.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt2w8owner', email 'zt2w8owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt2w8owner' only if a display name is required and empty.
+      - 2. Create collections 'Unique zt2w8' and 'Other zt2w8'.
+      - 3. Try creating a collection using exact existing name 'Unique zt2w8', then try a blank collection name; the app may prevent or reject these inputs or produce valid nonblank, unique names.
+      - 4. Reload the owner’s collections and confirm every persisted name is nonblank and unique for this owner; the two original collections still have their valid names. Any newly generated name must also be nonblank and distinct.
+      - 5. Try renaming 'Other zt2w8' to exact existing name 'Unique zt2w8', then try a blank name for that same collection, locating it by its current name if the app normalized the first attempt; prevention, rejection, or normalization to a valid nonblank unique name are allowed.
+      - 6. Reload and confirm the resulting persisted collection names are nonblank and unique for this owner; do not require a particular recovery name. If an attempt was rejected without a rename, that collection’s prior name must remain unchanged.
+    iteration_2_regression_1:
+      id: iteration_2_regression_1
+      title: Ordinary post editing
+      purpose: Verify ordinary post editing using only this workflow's accounts and records.
+      is_regression: true
+      steps:
+      - 1. Sign out if signed in, then register username 'zt2w9owner', email 'zt2w9owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt2w9owner' only if a display name is required and empty.
+      - 2. Publish 'zt2w9alpha source post'. Edit it to 'Edited zt2w9alpha source post'.
+      - 3. Open your public profile and confirm the revised text. Delete the post and confirm it disappears from your profile.
+    iteration_2_regression_2:
+      id: iteration_2_regression_2
+      title: Like and comment
+      purpose: Verify like and comment using only this workflow's accounts and records.
+      is_regression: true
+      steps:
+      - 1. Sign out if signed in, then register username 'zt2w10owner', email 'zt2w10owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt2w10owner' only if a display name is required and empty.
+      - 2. Publish 'zt2w10alpha source post'. Sign out and register username 'zt2w10reader', email 'zt2w10reader@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt2w10reader' only if a display name is required and empty.
+      - 3. Open the author's public profile, like that post, and comment 'Comment zt2w10'. Confirm the like state and comment appear on post detail.
+    iteration_2_regression_3:
+      id: iteration_2_regression_3
+      title: Saved note privacy
+      purpose: Verify saved note privacy using only this workflow's accounts and records.
+      is_regression: true
+      steps:
+      - 1. Sign out if signed in, then register username 'zt2w11owner', email 'zt2w11owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt2w11owner' only if a display name is required and empty.
+      - 2. Publish and save 'zt2w11alpha source post' with note 'Private zt2w11'.
+      - 3. Sign out and register username 'zt2w11reader', email 'zt2w11reader@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt2w11reader' only if a display name is required and empty. Open the author's profile and post detail. Confirm 'Private zt2w11' is absent.
+    iteration_2_regression_4:
+      id: iteration_2_regression_4
+      title: Unsave without deleting post
+      purpose: Verify unsave without deleting post using only this workflow's accounts and records.
+      is_regression: true
+      steps:
+      - 1. Sign out if signed in, then register username 'zt2w12owner', email 'zt2w12owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt2w12owner' only if a display name is required and empty.
+      - 2. Publish and save 'zt2w12alpha source post'. Unsave it.
+      - 3. Confirm it disappears from Saved but remains on the author's profile.
+    iteration_2_continuity_b:
+      id: iteration_2_continuity_b
+      title: Migrate existing continuity B into Unfiled
+      purpose: Migrate existing continuity B into Unfiled using generation-created continuity records; do not create or repair missing records. For authenticated owner note-value checks, use the available full-note view or editor. Count logical saves and memberships through available pagination or groups; repeated presentations are not extra records.
+      is_regression: false
+      steps:
+      - 1. Use this workflow's single fresh browser session. Sign in as the existing demo member ztcontinuity with password ZeeterPass123!. Do not sign out, create, edit, save, or repair continuity records during this check. For owner note checks from a collection, access the same saved record's private note through Saved or an available owner note view; still verify its membership in the named collection.
+      - 2. Open Saved and locate the existing source post 'Zeeter continuity B'. Confirm exactly one saved entry has private note 'Keep B'. Missing data is a failure; do not create replacements.
+      - 3. Reload and confirm the same existing saved entry and note remain. Open its original source post through available app links, search, or pagination and confirm its content remains 'Zeeter continuity B'.
+      - 4. Open Unfiled. Confirm the existing 'Zeeter continuity B' save and its 'Keep B' note are present without creating a new save.
+    iteration_2_owner_names:
+      id: iteration_2_owner_names
+      title: Names and contents are private per owner
+      purpose: Identical names across owners are valid while saves and notes remain private. For authenticated owner note-value checks, use the available full-note view or editor.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt2namesowner', email 'zt2namesowner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt2namesowner' only if a display name is required and empty. For owner note checks from a collection, access the same saved record's private note through Saved or an available owner note view; still verify its membership in the named collection.
+      - 2. Publish and save 'zt2names owner source' with private note 'zt2names owner note'; create 'Same name zt2names', add the save, and confirm this owner's collection contents and note through Saved. Record the owning Saved app URL.
+      - 3. Sign out if signed in, then register username 'zt2namesreader', email 'zt2namesreader@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt2namesreader' only if a display name is required and empty.
+      - 4. Publish and save 'zt2names reader source' with private note 'zt2names reader note'; create a collection with the same name 'Same name zt2names' and add this reader's own save.
+      - 5. Confirm the reader's collection exists with the reader source and note; the owner's source membership and note are absent from the reader's collection and Saved.
+      - 6. Visit the recorded owning Saved URL as this reader; confirm no owner's collection contents or note are exposed. The reader's own Saved page may remain visible.
+      - 7. Sign out if currently signed in, then sign in with username 'zt2namesowner' and password 'ZeeterPass123!'.
+      - 8. Open the original collection and confirm the original owner's save and note remain unchanged and the reader's source and note are absent.
+    iteration_2_legacy_private_readback:
+      id: iteration_2_legacy_private_readback
+      title: Prepare a real pre-sharing private collection
+      purpose: Read generation-authored input before the i3 default-private migration. For authenticated owner note-value checks, use the available full-note view or editor. Count logical saves and memberships through available pagination or groups; repeated presentations are not extra records.
+      is_regression: false
+      steps:
+      - 1. Sign in with username 'ztlegacyprivate' and password 'ZeeterPass123!'; use the existing generation-authored account, not a replacement. For owner note checks from a collection, access the same saved record's private note through Saved or an available owner note view; still verify its membership in the named collection.
+      - 2. Open Saved and confirm exactly one save for 'Zeeter legacy private source' with note 'Legacy private note'.
+      - 3. Open existing collection 'Zeeter Legacy Private' and confirm that same saved post and note are its single membership.
+      - 4. Reload and confirm the collection name, original source text, membership, and note persist. Leave all records unchanged.
+- id: iteration_3
+  title: Read-only collection sharing
+  change_type: cross_cutting
+  workflows:
+    iteration_3_delta_1:
+      id: iteration_3_delta_1
+      title: Private by default
+      purpose: Verify private by default using only this workflow's accounts and records.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt3w1owner', email 'zt3w1owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt3w1owner' only if a display name is required and empty.
+      - 2. Publish and save 'zt3w1alpha source post'; create 'Private zt3w1' and add this saved post.
+      - 3. Inspect the owner's available collection actions and confirm this new collection is private and has not been shared; do not enable sharing.
+      - 4. Sign out and open the public profile for username 'zt3w1owner' through available app links or navigation; confirm the ordinary source post is public while collection name 'Private zt3w1' and its private membership are not exposed.
+    iteration_3_delta_2:
+      id: iteration_3_delta_2
+      title: Guest reads share
+      purpose: Verify guest reads share using only this workflow's accounts and records.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt3w2owner', email 'zt3w2owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt3w2owner' only if a display name is required and empty.
+      - 2. Publish and save 'zt3w2alpha source post'.
+      - 3. Open Saved, create collection 'Public zt3w2', and add this saved post.
+      - 4. Enable public sharing for 'Public zt3w2' and copy its product share link.
+      - 5. Sign out and open the copied link; confirm collection name 'Public zt3w2' and the live source text 'zt3w2alpha source post' are visible.
+      - 6. Reload this exact link and confirm the same public collection and source remain visible.
+    iteration_3_delta_3:
+      id: iteration_3_delta_3
+      title: Private note redaction
+      purpose: Verify private note redaction using only this workflow's accounts and records. For authenticated owner note-value checks, use the available full-note view or editor.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt3w3owner', email 'zt3w3owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt3w3owner' only if a display name is required and empty.
+      - 2. Publish and save 'zt3w3alpha source post' with private note 'Never publish zt3w3'.
+      - 3. Open Saved, create collection 'Public zt3w3', and add this saved post.
+      - 4. Enable sharing for this collection and copy its product link.
+      - 5. Sign out, open the link, and reload; confirm source post 'zt3w3alpha source post' is visible while private note 'Never publish zt3w3' is absent.
+    iteration_3_delta_4:
+      id: iteration_3_delta_4
+      title: Other collection stays private
+      purpose: Verify other collection stays private using only this workflow's accounts and records.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt3w4owner', email 'zt3w4owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt3w4owner' only if a display name is required and empty.
+      - 2. Publish and save 'zt3w4alpha source post'; create collections 'Public zt3w4' and 'Hidden zt3w4' and add this saved post to both.
+      - 3. Enable sharing only for 'Public zt3w4' and copy that product link; leave 'Hidden zt3w4' private.
+      - 4. Sign out, open Public's link, and reload; confirm Public's name and source post are visible while collection name 'Hidden zt3w4' and its membership are absent.
+    iteration_3_delta_5:
+      id: iteration_3_delta_5
+      title: Read-only guest
+      purpose: Verify read-only guest using only this workflow's accounts and records. For authenticated owner note-value checks, use the available full-note view or editor.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt3w5owner', email 'zt3w5owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt3w5owner' only if a display name is required and empty.
+      - 2. Publish and save 'zt3w5alpha source post'.
+      - 3. Open Saved, create collection 'Public zt3w5', and add this saved post.
+      - 4. Enable sharing and copy this collection's product link.
+      - 5. Sign out, open the link, and confirm the named collection and source post are visible.
+      - 6. Confirm the public page provides no owner-data action to edit private notes, rename or delete this collection, remove its memberships, or delete the source post.
+    iteration_3_delta_6:
+      id: iteration_3_delta_6
+      title: Read-only other member
+      purpose: Verify read-only other member using only this workflow's accounts and records. For authenticated owner note-value checks, use the available full-note view or editor.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt3w6owner', email 'zt3w6owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt3w6owner' only if a display name is required and empty. For owner note checks from a collection, access the same saved record's private note through Saved or an available owner note view; still verify its membership in the named collection.
+      - 2. Publish and save 'zt3w6alpha source post' with private note 'Owner note zt3w6'.
+      - 3. Open Saved, create collection 'Public zt3w6', and add this saved post.
+      - 4. Enable sharing and copy this collection's product link.
+      - 5. Sign out if signed in, then register username 'zt3w6reader', email 'zt3w6reader@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt3w6reader' only if a display name is required and empty.
+      - 6. Open the copied link and confirm this owner's collection and source post are visible but private note 'Owner note zt3w6' is absent.
+      - 7. Confirm this reader has no action to change the owner's collection name, memberships, private notes, or source post. Actions affecting only the reader's own data are allowed.
+      - 8. Sign out if currently signed in, then sign in with username 'zt3w6owner' and password 'ZeeterPass123!'.
+      - 9. Open the owner collection and confirm its name, original source membership, and private note 'Owner note zt3w6' remain unchanged.
+    iteration_3_delta_7:
+      id: iteration_3_delta_7
+      title: Revoke public link
+      purpose: Verify revoke public link using only this workflow's accounts and records.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt3w7owner', email 'zt3w7owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt3w7owner' only if a display name is required and empty.
+      - 2. Publish and save 'zt3w7alpha source post'.
+      - 3. Open Saved, create collection 'Public zt3w7', and add this saved post.
+      - 4. Enable public sharing and copy its exact product link L1.
+      - 5. Sign out, open L1, and confirm the named collection and source post are publicly readable.
+      - 6. Sign out if currently signed in, then sign in with username 'zt3w7owner' and password 'ZeeterPass123!'.
+      - 7. Revoke sharing for 'Public zt3w7'.
+      - 8. Sign out, revisit L1, and reload; confirm the collection name and its entries are unavailable.
+      - 9. Open the public profile for username 'zt3w7owner' through available app links or navigation and the ordinary source post detail; confirm 'zt3w7alpha source post' remains publicly visible unchanged.
+    iteration_3_delta_8:
+      id: iteration_3_delta_8
+      title: Live post edits
+      purpose: Verify live post edits using only this workflow's accounts and records.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt3w8owner', email 'zt3w8owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt3w8owner' only if a display name is required and empty.
+      - 2. Publish and save 'zt3w8alpha source post'.
+      - 3. Open Saved, create collection 'Public zt3w8', and add this saved post.
+      - 4. Enable sharing and copy its exact product link.
+      - 5. Edit the original source post to 'zt3w8 revised source' using an available owner editing action and complete the edit through the provided action or autosave.
+      - 6. Sign out, open the exact share link, and reload; confirm this collection entry’s current source preview or body corresponds to 'zt3w8 revised source'. Read the entry’s associated full current content if abbreviated; separately labeled edit history may contain earlier versions.
+      - 7. Open the public profile for username 'zt3w8owner' through available app links or navigation and confirm the ordinary source post has the same revised text.
+    iteration_3_regression_1:
+      id: iteration_3_regression_1
+      title: Ordinary post editing
+      purpose: Verify ordinary post editing using only this workflow's accounts and records.
+      is_regression: true
+      steps:
+      - 1. Sign out if signed in, then register username 'zt3w9owner', email 'zt3w9owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt3w9owner' only if a display name is required and empty.
+      - 2. Publish 'zt3w9alpha source post'. Edit it to 'Edited zt3w9alpha source post'.
+      - 3. Open your public profile and confirm the revised text. Delete the post and confirm it disappears from your profile.
+    iteration_3_regression_2:
+      id: iteration_3_regression_2
+      title: Like and comment
+      purpose: Verify like and comment using only this workflow's accounts and records.
+      is_regression: true
+      steps:
+      - 1. Sign out if signed in, then register username 'zt3w10owner', email 'zt3w10owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt3w10owner' only if a display name is required and empty.
+      - 2. Publish 'zt3w10alpha source post'. Sign out and register username 'zt3w10reader', email 'zt3w10reader@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt3w10reader' only if a display name is required and empty.
+      - 3. Open the author's public profile, like that post, and comment 'Comment zt3w10'. Confirm the like state and comment appear on post detail.
+    iteration_3_regression_3:
+      id: iteration_3_regression_3
+      title: Saved note privacy
+      purpose: Verify saved note privacy using only this workflow's accounts and records.
+      is_regression: true
+      steps:
+      - 1. Sign out if signed in, then register username 'zt3w11owner', email 'zt3w11owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt3w11owner' only if a display name is required and empty.
+      - 2. Publish and save 'zt3w11alpha source post' with note 'Private zt3w11'.
+      - 3. Sign out and register username 'zt3w11reader', email 'zt3w11reader@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt3w11reader' only if a display name is required and empty. Open the author's profile and post detail. Confirm 'Private zt3w11' is absent.
+    iteration_3_regression_4:
+      id: iteration_3_regression_4
+      title: Collection removal isolation
+      purpose: Verify collection removal isolation using only this workflow's accounts and records. For authenticated owner note-value checks, use the available full-note view or editor.
+      is_regression: true
+      steps:
+      - 1. Sign out if signed in, then register username 'zt3w12owner', email 'zt3w12owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt3w12owner' only if a display name is required and empty. For owner note checks from a collection, access the same saved record's private note through Saved or an available owner note view; still verify its membership in the named collection.
+      - 2. Publish and save 'zt3w12alpha source post' with note 'Keep zt3w12'. Create collections 'A zt3w12' and 'B zt3w12'. Add it to 'A zt3w12' and 'B zt3w12'.
+      - 3. Remove it only from A. Confirm B retains the post and note, while A does not contain the post.
+    iteration_3_delta_9:
+      id: iteration_3_delta_9
+      title: Stable collection share link
+      purpose: Verify the initial sharing policy reuses a collection's link after re-enabling. Open the app’s Saved area through its available entry point to manage saved posts and collections. Do not infer missing functionality from the baseline README.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt3w13owner', email 'zt3w13owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt3w13owner' only if a display name is required and empty.
+      - 2. Publish and save 'zt3w13alpha source post'.
+      - 3. Open Saved, create collection 'Stable zt3w13', and add this saved post.
+      - 4. Enable sharing and copy exact product link L1; revoke sharing, enable it again, and copy product link L2.
+      - 5. Confirm L2 is the same URL as L1.
+      - 6. Sign out, open L1, and reload; confirm the collection name and source post are publicly visible again.
+    iteration_3_continuity_membership:
+      id: iteration_3_continuity_membership
+      title: Preserve both saves in the shared continuity collection
+      purpose: Preserve both saves in the shared continuity collection using generation-created continuity records; do not create or repair missing records. Open the app’s Saved area through its available entry point to manage saved posts and collections. Do not infer missing functionality from the baseline README. For authenticated owner note-value checks, use the available full-note view or editor.
+      is_regression: false
+      steps:
+      - 1. Use this workflow's single fresh browser session. Sign in as the existing demo member ztcontinuity with password ZeeterPass123!. Do not sign out, create, edit, save, or repair continuity records during this check. For owner note checks from a collection, access the same saved record's private note through Saved or an available owner note view; still verify its membership in the named collection.
+      - 2. Open the generation-created 'Zeeter Continuity' collection. Confirm it contains the existing 'Zeeter continuity A' and 'Zeeter continuity B' saves, with notes 'Keep A' and 'Keep B'. Missing data is a failure; do not add it.
+      - 3. Reload and verify both memberships and notes remain. Confirm sharing is enabled without changing it.
+    iteration_3_continuity_link:
+      id: iteration_3_continuity_link
+      title: Verify the published continuity share path
+      purpose: Verify the published continuity share path using generation-created continuity records; do not create or repair missing records. Open the app’s Saved area through its available entry point to manage saved posts and collections. Do not infer missing functionality from the baseline README.
+      is_regression: false
+      steps:
+      - 1. Use this workflow's single fresh browser session. Visit ztcontinuity's public profile while signed out.
+      - 2. Use the published demo path /shared/zeeter-continuity on this app's current origin. This exact path was made public during generation in iteration 3; do not substitute another link or create or repair the demo collection.
+      - 3. Open /shared/zeeter-continuity and reload. Confirm it renders the 'Zeeter Continuity' collection and lists 'Zeeter continuity A' and 'Zeeter continuity B' as collection entries, not merely as ordinary feed posts.
+    iteration_3_existing_private:
+      id: iteration_3_existing_private
+      title: Existing private collection stays private
+      purpose: Use a generation-created i2 collection to check default privacy during sharing introduction. For authenticated owner note-value checks, use the available full-note view or editor.
+      is_regression: false
+      steps:
+      - 1. Sign in with username 'ztlegacyprivate' and password 'ZeeterPass123!'; do not recreate, reset, or repair this existing account or its records. For owner note checks from a collection, access the same saved record's private note through Saved or an available owner note view; still verify its membership in the named collection.
+      - 2. Open Saved and existing collection 'Zeeter Legacy Private'; confirm its single source 'Zeeter legacy private source' and note 'Legacy private note' remain unchanged.
+      - 3. Inspect its available collection actions and confirm sharing is off without enabling it; record the actual owning Saved app-page URL while these private contents are visible.
+      - 4. Sign out and visit the recorded Saved URL, then the public profile for username 'ztlegacyprivate' through available app links or navigation; confirm no private collection name, membership, or note is exposed, while the ordinary source post remains public.
+      - 5. Sign out if signed in, then register username 'zt3legacyreader', email 'zt3legacyreader@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt3legacyreader' only if a display name is required and empty.
+      - 6. Visit that same owning Saved URL and the original author's public profile; confirm the private collection, membership, and note are unavailable. This reader's own Saved area may remain accessible.
+- id: iteration_4
+  title: Fix revocation across viewers
+  change_type: bugfix
+  workflows:
+    iteration_4_delta_1:
+      id: iteration_4_delta_1
+      title: Guest revocation after sequential account switch
+      purpose: Verify guest revocation using sequential owner and guest actions in one browser session, with a positive public read before revocation.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt4w1owner', email 'zt4w1owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt4w1owner' only if a display name is required and empty.
+      - 2. Publish and save 'zt4w1alpha source post'.
+      - 3. Open Saved, create collection 'Public zt4w1', and add this saved post.
+      - 4. Enable sharing and copy exact product link L1.
+      - 5. Sign out, open L1, and confirm its collection name and source post are readable as a guest.
+      - 6. Sign out if currently signed in, then sign in with username 'zt4w1owner' and password 'ZeeterPass123!'.
+      - 7. Revoke sharing, then enable it again and copy product link L2; confirm L2 differs from L1.
+      - 8. Sign out, revisit L1 in this same session, and reload; confirm the collection name and entries remain unavailable.
+      - 9. Open L2 and reload; confirm 'Public zt4w1' and 'zt4w1alpha source post' are visible.
+    iteration_4_delta_2:
+      id: iteration_4_delta_2
+      title: Signed-in viewer revocation
+      purpose: Verify signed-in viewer revocation using only this workflow's accounts and records.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt4w2owner', email 'zt4w2owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt4w2owner' only if a display name is required and empty.
+      - 2. Publish and save 'zt4w2alpha source post'.
+      - 3. Open Saved, create collection 'Public zt4w2', and add this saved post.
+      - 4. Enable sharing and copy exact product link L1.
+      - 5. Sign out if signed in, then register username 'zt4w2reader', email 'zt4w2reader@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt4w2reader' only if a display name is required and empty.
+      - 6. Open L1 and confirm this nonowner can read the named collection and source post.
+      - 7. Sign out if currently signed in, then sign in with username 'zt4w2owner' and password 'ZeeterPass123!'.
+      - 8. Revoke and re-enable sharing; copy L2 and confirm it differs from L1.
+      - 9. Sign out if currently signed in, then sign in with username 'zt4w2reader' and password 'ZeeterPass123!'.
+      - 10. Visit L1 and reload; confirm the owner's collection name and entries remain unavailable.
+      - 11. Open L2 and reload; confirm the collection and source post are visible to this nonowner.
+    iteration_4_regression_5:
+      id: iteration_4_regression_5
+      title: Owner data retained
+      purpose: Verify owner data retained using only this workflow's accounts and records. For authenticated owner note-value checks, use the available full-note view or editor.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt4w3owner', email 'zt4w3owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt4w3owner' only if a display name is required and empty. For owner note checks from a collection, access the same saved record's private note through Saved or an available owner note view; still verify its membership in the named collection.
+      - 2. Publish and save 'zt4w3alpha source post' with private note 'Keep zt4w3'.
+      - 3. Open Saved, create collection 'Public zt4w3', and add this saved post.
+      - 4. Enable sharing, revoke it, and enable it again.
+      - 5. Open the owner collection and reload; confirm name 'Public zt4w3', its single source membership 'zt4w3alpha source post', and note 'Keep zt4w3' remain unchanged in both the collection and Saved.
+    iteration_4_delta_4:
+      id: iteration_4_delta_4
+      title: Share again
+      purpose: Verify share again using only this workflow's accounts and records.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt4w4owner', email 'zt4w4owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt4w4owner' only if a display name is required and empty.
+      - 2. Publish and save 'zt4w4alpha source post'.
+      - 3. Open Saved, create collection 'Again zt4w4', and add this saved post.
+      - 4. Enable sharing and copy L1; sign out and confirm L1 publicly shows this collection and source post.
+      - 5. Sign out if currently signed in, then sign in with username 'zt4w4owner' and password 'ZeeterPass123!'.
+      - 6. Revoke sharing, enable it again, and copy L2; confirm L2 differs from L1.
+      - 7. Sign out, open L1, and reload; confirm the old link exposes no collection name or entries.
+      - 8. Open L2 and reload; confirm the collection name and source post are visible.
+    iteration_4_delta_5:
+      id: iteration_4_delta_5
+      title: Other collection independent
+      purpose: Verify other collection independent using only this workflow's accounts and records.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt4w5owner', email 'zt4w5owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt4w5owner' only if a display name is required and empty.
+      - 2. Publish and save 'zt4w5alpha source post'; create 'A zt4w5' and 'B zt4w5', and add the saved post to both.
+      - 3. Enable sharing for both collections and copy product links A1 and B1.
+      - 4. Sign out and open A1 then B1 in this same session; confirm each corresponding name and source post are publicly visible.
+      - 5. Sign out if currently signed in, then sign in with username 'zt4w5owner' and password 'ZeeterPass123!'.
+      - 6. Revoke sharing only for A, enable A again, and copy A2; confirm A2 differs from A1 and B still offers its original B1 link.
+      - 7. Sign out, open A1, and reload; confirm A's name and entries are unavailable.
+      - 8. Open A2 then B1, reloading each; confirm A's new link and B's unchanged link show their own collection names and the same source post.
+    iteration_4_regression_6:
+      id: iteration_4_regression_6
+      title: Same post remains public
+      purpose: Verify same post remains public using only this workflow's accounts and records.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt4w6owner', email 'zt4w6owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt4w6owner' only if a display name is required and empty.
+      - 2. Publish and save 'zt4w6alpha source post'.
+      - 3. Open Saved, create collection 'Private now zt4w6', and add this saved post.
+      - 4. Enable sharing, revoke it, and enable it again; then revoke it once more.
+      - 5. Sign out and open the public profile for username 'zt4w6owner' through available app links or navigation and the original source detail; confirm 'zt4w6alpha source post' is still publicly visible unchanged.
+    iteration_4_delta_7:
+      id: iteration_4_delta_7
+      title: Revoked direct link
+      purpose: Verify revoked direct link using only this workflow's accounts and records.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt4w7owner', email 'zt4w7owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt4w7owner' only if a display name is required and empty.
+      - 2. Publish and save 'zt4w7alpha source post'.
+      - 3. Open Saved, create collection 'Link zt4w7', and add this saved post.
+      - 4. Enable sharing and copy L1; sign out and open L1 to confirm this collection and source post are publicly readable.
+      - 5. Sign out if currently signed in, then sign in with username 'zt4w7owner' and password 'ZeeterPass123!'.
+      - 6. Revoke and re-enable sharing; copy L2 and confirm it differs from L1.
+      - 7. Sign out, open L2, and reload; confirm 'Link zt4w7' and 'zt4w7alpha source post' are publicly readable through this second product link.
+      - 8. Sign in with username 'zt4w7owner' and password 'ZeeterPass123!'.
+      - 9. Revoke and re-enable sharing again; copy L3 and confirm it differs from both L1 and L2.
+      - 10. Sign out and open L1, then reload; open L2, then reload. Neither revoked link may expose the collection name or entries.
+      - 11. Open L3 and reload; confirm 'Link zt4w7' and 'zt4w7alpha source post' are visible.
+      - 12. Register username 'zt4w7reader', email 'zt4w7reader@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt4w7reader' only if a display name is required and empty.
+      - 13. Open L1 and L2 sequentially, reloading each; confirm neither reveals collection data to this nonowner. Open L3 and reload; confirm the collection and source post remain readable.
+    iteration_4_regression_7:
+      id: iteration_4_regression_7
+      title: Private notes after re-share
+      purpose: Verify private notes after re-share using only this workflow's accounts and records.
+      is_regression: true
+      steps:
+      - 1. Sign out if signed in, then register username 'zt4w8owner', email 'zt4w8owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt4w8owner' only if a display name is required and empty.
+      - 2. Publish and save 'zt4w8alpha source post' with note 'Secret zt4w8'. Create 'Again zt4w8', add the post, share, revoke, and share again.
+      - 3. Copy the active link and sign out. Open it and confirm the post appears but 'Secret zt4w8' does not.
+    iteration_4_regression_1:
+      id: iteration_4_regression_1
+      title: Ordinary post editing
+      purpose: Verify ordinary post editing using only this workflow's accounts and records.
+      is_regression: true
+      steps:
+      - 1. Sign out if signed in, then register username 'zt4w9owner', email 'zt4w9owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt4w9owner' only if a display name is required and empty.
+      - 2. Publish 'zt4w9alpha source post'. Edit it to 'Edited zt4w9alpha source post'.
+      - 3. Open your public profile and confirm the revised text. Delete the post and confirm it disappears from your profile.
+    iteration_4_regression_2:
+      id: iteration_4_regression_2
+      title: Like and comment
+      purpose: Verify like and comment using only this workflow's accounts and records.
+      is_regression: true
+      steps:
+      - 1. Sign out if signed in, then register username 'zt4w10owner', email 'zt4w10owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt4w10owner' only if a display name is required and empty.
+      - 2. Publish 'zt4w10alpha source post'. Sign out and register username 'zt4w10reader', email 'zt4w10reader@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt4w10reader' only if a display name is required and empty.
+      - 3. Open the author's public profile, like that post, and comment 'Comment zt4w10'. Confirm the like state and comment appear on post detail.
+    iteration_4_regression_3:
+      id: iteration_4_regression_3
+      title: Saved note privacy
+      purpose: Verify saved note privacy using only this workflow's accounts and records.
+      is_regression: true
+      steps:
+      - 1. Sign out if signed in, then register username 'zt4w11owner', email 'zt4w11owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt4w11owner' only if a display name is required and empty.
+      - 2. Publish and save 'zt4w11alpha source post' with note 'Private zt4w11'.
+      - 3. Sign out and register username 'zt4w11reader', email 'zt4w11reader@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt4w11reader' only if a display name is required and empty. Open the author's profile and post detail. Confirm 'Private zt4w11' is absent.
+    iteration_4_regression_4:
+      id: iteration_4_regression_4
+      title: Collection removal isolation
+      purpose: Verify collection removal isolation using only this workflow's accounts and records. For authenticated owner note-value checks, use the available full-note view or editor.
+      is_regression: true
+      steps:
+      - 1. Sign out if signed in, then register username 'zt4w12owner', email 'zt4w12owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt4w12owner' only if a display name is required and empty. For owner note checks from a collection, access the same saved record's private note through Saved or an available owner note view; still verify its membership in the named collection.
+      - 2. Publish and save 'zt4w12alpha source post' with note 'Keep zt4w12'. Create collections 'A zt4w12' and 'B zt4w12'. Add it to 'A zt4w12' and 'B zt4w12'.
+      - 3. Remove it only from A. Confirm B retains the post and note, while A does not contain the post.
+    iteration_4_existing_guest_link:
+      id: iteration_4_existing_guest_link
+      title: Keep the existing active share link usable by guests
+      purpose: Keep the existing active share link usable by guests using generation-created continuity records; do not create or repair missing records. Open the app’s Saved area through its available entry point to manage saved posts and collections. Do not infer missing functionality from the baseline README.
+      is_regression: false
+      steps:
+      - 1. Use this workflow's single fresh browser session. Visit ztcontinuity's public profile while signed out.
+      - 2. Use the published demo path /shared/zeeter-continuity on this app's current origin. This exact path was made public during generation in iteration 3; do not substitute another link or create or repair the demo collection.
+      - 3. Open /shared/zeeter-continuity and reload. Confirm it renders the 'Zeeter Continuity' collection and lists 'Zeeter continuity A' and 'Zeeter continuity B' as collection entries, not merely as ordinary feed posts.
+    iteration_4_existing_member_link:
+      id: iteration_4_existing_member_link
+      title: Keep the existing active share link usable by members
+      purpose: Keep the existing active share link usable by members using generation-created continuity records; do not create or repair missing records. Open the app’s Saved area through its available entry point to manage saved posts and collections. Do not infer missing functionality from the baseline README.
+      is_regression: false
+      steps:
+      - 1. Use this workflow's single fresh browser session. Visit ztcontinuity's public profile while signed out.
+      - 2. Use the published demo path /shared/zeeter-continuity on this app's current origin. This exact path was made public during generation in iteration 3; do not substitute another link or create or repair the demo collection.
+      - 3. Create this workflow's separate member zt4continuityreader, email zt4continuityreader@example.com, password ZeeterPass123!. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt4continuityreader' only if a display name is required and empty. Do not sign in as ztcontinuity.
+      - 4. Open /shared/zeeter-continuity and reload. Confirm it renders the 'Zeeter Continuity' collection and lists 'Zeeter continuity A' and 'Zeeter continuity B' as collection entries, not merely as ordinary feed posts.
+    iteration_4_continuity_owner:
+      id: iteration_4_continuity_owner
+      title: Retain the active continuity collection and private notes
+      purpose: Read generation-authored owner state while the old active public link is preserved. For authenticated owner note-value checks, use the available full-note view or editor. Count logical saves and memberships through available pagination or groups; repeated presentations are not extra records.
+      is_regression: false
+      steps:
+      - 1. Sign in with username 'ztcontinuity' and password 'ZeeterPass123!'; do not sign out or create, edit, save, revoke, or repair any continuity records. For owner note checks from a collection, access the same saved record's private note through Saved or an available owner note view; still verify its membership in the named collection.
+      - 2. Open Saved and existing collection 'Zeeter Continuity'; confirm exactly one membership each for 'Zeeter continuity A' and 'Zeeter continuity B', with unchanged private notes 'Keep A' and 'Keep B'.
+      - 3. Reload and confirm the same collection name, source texts, memberships, notes, and enabled sharing remain unchanged. Do not re-enable or change its existing sharing.
+- id: iteration_5
+  title: Remove public sharing without data loss
+  change_type: revert
+  workflows:
+    iteration_5_delta_1:
+      id: iteration_5_delta_1
+      title: No collection sharing control
+      purpose: Verify no collection sharing control using only this workflow's accounts and records.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt5w1owner', email 'zt5w1owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt5w1owner' only if a display name is required and empty.
+      - 2. Publish and save 'zt5w1 public source'; create collection 'Private zt5w1' and add that saved post.
+      - 3. Inspect the home feed, Saved, this owner's collection view, and available collection actions; confirm none offers public collection sharing or product share-link creation.
+      - 4. Open your profile and the original post detail for 'zt5w1 public source'; confirm no public collection-sharing control is offered on either surface.
+    iteration_5_delta_2:
+      id: iteration_5_delta_2
+      title: Retire the existing share link for guests
+      purpose: Retire the existing share link for guests using generation-created continuity records; do not create or repair missing records. Open the app’s Saved area through its available entry point to manage saved posts and collections. Do not infer missing functionality from the baseline README. For authenticated owner note-value checks, use the available full-note view or editor.
+      is_regression: false
+      steps:
+      - 1. Use this workflow's single fresh browser session. Visit ztcontinuity's public profile while signed out.
+      - 2. Use the published demo path /shared/zeeter-continuity on this app's current origin. This exact path was made public during generation in iteration 3; do not substitute another link or create or repair the demo collection.
+      - 3. Open /shared/zeeter-continuity and reload. Confirm it no longer renders a collection view or exposes its membership, names, or private notes. An unavailable screen or navigation away is allowed; ordinary public source posts elsewhere must remain unchanged.
+    iteration_5_regression_5:
+      id: iteration_5_regression_5
+      title: Collections remain private
+      purpose: Verify collections remain private using only this workflow's accounts and records. For authenticated owner note-value checks, use the available full-note view or editor.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt5w3owner', email 'zt5w3owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt5w3owner' only if a display name is required and empty. For owner note checks from a collection, access the same saved record's private note through Saved or an available owner note view; still verify its membership in the named collection.
+      - 2. Publish and save 'zt5w3alpha source post' with note 'Private zt5w3'; create 'Hidden zt5w3' and add this saved post.
+      - 3. Open the collection through Saved and confirm the owner's private source membership and note are visible; record the actual owning Saved app-page URL.
+      - 4. Sign out if signed in, then register username 'zt5w3reader', email 'zt5w3reader@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt5w3reader' only if a display name is required and empty.
+      - 5. Visit the recorded URL and inspect this reader's Saved area and the public profile for username 'zt5w3owner' through available app links or navigation; confirm the owner's private collection contents and note are unavailable, while the ordinary source post stays public. The reader's own Saved area may remain accessible.
+    iteration_5_regression_6:
+      id: iteration_5_regression_6
+      title: Preserve continuity A after removing sharing
+      purpose: Preserve continuity A after removing sharing using generation-created continuity records; do not create or repair missing records. Open the app’s Saved area through its available entry point to manage saved posts and collections. Do not infer missing functionality from the baseline README. For authenticated owner note-value checks, use the available full-note view or editor. Count logical saves and memberships through available pagination or groups; repeated presentations are not extra records.
+      is_regression: false
+      steps:
+      - 1. Use this workflow's single fresh browser session. Sign in as the existing demo member ztcontinuity with password ZeeterPass123!. Do not sign out, create, edit, save, or repair continuity records during this check. For owner note checks from a collection, access the same saved record's private note through Saved or an available owner note view; still verify its membership in the named collection.
+      - 2. Open Saved and locate the existing source post 'Zeeter continuity A'. Confirm exactly one saved entry has private note 'Keep A'. Missing data is a failure; do not create replacements.
+      - 3. Open the existing 'Zeeter Continuity' collection. Confirm the same saved post and note are still members of that collection.
+      - 4. Reload and confirm the same existing saved entry and note remain. Open its original source post through available app links, search, or pagination and confirm its content remains 'Zeeter continuity A'.
+      - 5. Inspect Saved and this existing formerly shared collection's owner view and available actions; confirm no public collection-sharing control or product share-link creation is offered.
+    iteration_5_regression_7:
+      id: iteration_5_regression_7
+      title: Preserve continuity B after removing sharing
+      purpose: Preserve continuity B after removing sharing using generation-created continuity records; do not create or repair missing records. Open the app’s Saved area through its available entry point to manage saved posts and collections. Do not infer missing functionality from the baseline README. For authenticated owner note-value checks, use the available full-note view or editor. Count logical saves and memberships through available pagination or groups; repeated presentations are not extra records.
+      is_regression: false
+      steps:
+      - 1. Use this workflow's single fresh browser session. Sign in as the existing demo member ztcontinuity with password ZeeterPass123!. Do not sign out, create, edit, save, or repair continuity records during this check. For owner note checks from a collection, access the same saved record's private note through Saved or an available owner note view; still verify its membership in the named collection.
+      - 2. Open Saved and locate the existing source post 'Zeeter continuity B'. Confirm exactly one saved entry has private note 'Keep B'. Missing data is a failure; do not create replacements.
+      - 3. Open the existing 'Zeeter Continuity' collection. Confirm the same saved post and note are still members of that collection.
+      - 4. Reload and confirm the same existing saved entry and note remain. Open its original source post through available app links, search, or pagination and confirm its content remains 'Zeeter continuity B'.
+      - 5. Inspect Saved and this existing formerly shared collection's owner view and available actions; confirm no public collection-sharing control or product share-link creation is offered.
+    iteration_5_regression_8:
+      id: iteration_5_regression_8
+      title: Private source remains public
+      purpose: Verify private source remains public using only this workflow's accounts and records.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt5w6owner', email 'zt5w6owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt5w6owner' only if a display name is required and empty.
+      - 2. Publish and save 'zt5w6alpha source post'; create 'Hidden zt5w6' and add the saved post.
+      - 3. Sign out and open the public profile for username 'zt5w6owner' through available app links or navigation and the original post detail; confirm source text 'zt5w6alpha source post' remains public but collection name 'Hidden zt5w6' is absent.
+    iteration_5_regression_9:
+      id: iteration_5_regression_9
+      title: Owner-only collection editing
+      purpose: Verify owner-only collection editing using only this workflow's accounts and records.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt5w7owner', email 'zt5w7owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt5w7owner' only if a display name is required and empty.
+      - 2. Publish and save 'zt5w7alpha source post'; create 'Owner zt5w7' and add the save.
+      - 3. Open this private collection through Saved; confirm its name and source membership are readable by the owner and record the actual owning Saved app-page URL.
+      - 4. Sign out if signed in, then register username 'zt5w7reader', email 'zt5w7reader@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt5w7reader' only if a display name is required and empty.
+      - 5. Visit that URL and inspect Saved through reader navigation; confirm this owner's collection contents and owner editing actions are unavailable. A page containing this reader's own data may remain accessible.
+    iteration_5_regression_10:
+      id: iteration_5_regression_10
+      title: Delete preserves source
+      purpose: Verify delete preserves source using only this workflow's accounts and records. For authenticated owner note-value checks, use the available full-note view or editor.
+      is_regression: true
+      steps:
+      - 1. Sign out if signed in, then register username 'zt5w8owner', email 'zt5w8owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt5w8owner' only if a display name is required and empty. For owner note checks from a collection, access the same saved record's private note through Saved or an available owner note view; still verify its membership in the named collection.
+      - 2. Publish and save 'zt5w8alpha source post' with note 'Keep zt5w8'. Create collections 'Delete zt5w8'. Add it only to 'Delete zt5w8'. Delete the collection.
+      - 3. Confirm the saved post and note remain in Unfiled. Confirm the source post remains on your profile.
+    iteration_5_regression_1:
+      id: iteration_5_regression_1
+      title: Ordinary post editing
+      purpose: Verify ordinary post editing using only this workflow's accounts and records.
+      is_regression: true
+      steps:
+      - 1. Sign out if signed in, then register username 'zt5w9owner', email 'zt5w9owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt5w9owner' only if a display name is required and empty.
+      - 2. Publish 'zt5w9alpha source post'. Edit it to 'Edited zt5w9alpha source post'.
+      - 3. Open your public profile and confirm the revised text. Delete the post and confirm it disappears from your profile.
+    iteration_5_regression_2:
+      id: iteration_5_regression_2
+      title: Like and comment
+      purpose: Verify like and comment using only this workflow's accounts and records.
+      is_regression: true
+      steps:
+      - 1. Sign out if signed in, then register username 'zt5w10owner', email 'zt5w10owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt5w10owner' only if a display name is required and empty.
+      - 2. Publish 'zt5w10alpha source post'. Sign out and register username 'zt5w10reader', email 'zt5w10reader@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt5w10reader' only if a display name is required and empty.
+      - 3. Open the author's public profile, like that post, and comment 'Comment zt5w10'. Confirm the like state and comment appear on post detail.
+    iteration_5_regression_3:
+      id: iteration_5_regression_3
+      title: Saved note privacy
+      purpose: Verify saved note privacy using only this workflow's accounts and records.
+      is_regression: true
+      steps:
+      - 1. Sign out if signed in, then register username 'zt5w11owner', email 'zt5w11owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt5w11owner' only if a display name is required and empty.
+      - 2. Publish and save 'zt5w11alpha source post' with note 'Private zt5w11'.
+      - 3. Sign out and register username 'zt5w11reader', email 'zt5w11reader@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt5w11reader' only if a display name is required and empty. Open the author's profile and post detail. Confirm 'Private zt5w11' is absent.
+    iteration_5_regression_4:
+      id: iteration_5_regression_4
+      title: Collection removal isolation
+      purpose: Verify collection removal isolation using only this workflow's accounts and records. For authenticated owner note-value checks, use the available full-note view or editor.
+      is_regression: true
+      steps:
+      - 1. Sign out if signed in, then register username 'zt5w12owner', email 'zt5w12owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt5w12owner' only if a display name is required and empty. For owner note checks from a collection, access the same saved record's private note through Saved or an available owner note view; still verify its membership in the named collection.
+      - 2. Publish and save 'zt5w12alpha source post' with note 'Keep zt5w12'. Create collections 'A zt5w12' and 'B zt5w12'. Add it to 'A zt5w12' and 'B zt5w12'.
+      - 3. Remove it only from A. Confirm B retains the post and note, while A does not contain the post.
+    iteration_5_old_share_member:
+      id: iteration_5_old_share_member
+      title: Retire the existing share link for members
+      purpose: Retire the existing share link for members using generation-created continuity records; do not create or repair missing records. Open the app’s Saved area through its available entry point to manage saved posts and collections. Do not infer missing functionality from the baseline README. For authenticated owner note-value checks, use the available full-note view or editor.
+      is_regression: false
+      steps:
+      - 1. Use this workflow's single fresh browser session. Visit ztcontinuity's public profile while signed out.
+      - 2. Use the published demo path /shared/zeeter-continuity on this app's current origin. This exact path was made public during generation in iteration 3; do not substitute another link or create or repair the demo collection.
+      - 3. Create this workflow's separate member zt5continuityreader, email zt5continuityreader@example.com, password ZeeterPass123!. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt5continuityreader' only if a display name is required and empty. Do not sign in as ztcontinuity.
+      - 4. Open /shared/zeeter-continuity and reload. Confirm it no longer renders a collection view or exposes its membership, names, or private notes. An unavailable screen or navigation away is allowed; ordinary public source posts elsewhere must remain unchanged.
+    iteration_5_social_survival:
+      id: iteration_5_social_survival
+      title: Ordinary social actions survive sharing removal
+      purpose: Cover profiles, follows, likes and comments alongside private collections.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt5socialowner', email 'zt5socialowner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt5socialowner' only if a display name is required and empty.
+      - 2. Publish 'zt5social public source'; save it, create 'zt5social private collection', and add this saved post.
+      - 3. Sign out if signed in, then register username 'zt5socialreader', email 'zt5socialreader@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt5socialreader' only if a display name is required and empty.
+      - 4. Open the public profile for username 'zt5socialowner' through available app links or navigation and this ordinary source post's detail; confirm public profile identity and 'zt5social public source' are readable without exposing the owner's collection name.
+      - 5. Follow the author, like the source post, and comment 'zt5social ordinary comment'.
+      - 6. Reload the post detail and profile; confirm the comment and this reader's liked/following states persist.
+      - 7. Sign out if currently signed in, then sign in with username 'zt5socialowner' and password 'ZeeterPass123!'.
+      - 8. Open the original post detail and confirm the comment 'zt5social ordinary comment' remains visible; open Saved and confirm the private collection retains its source membership.
+- id: iteration_6
+  title: Keep saved references consistent
+  change_type: bugfix
+  workflows:
+    iteration_6_regression_5:
+      id: iteration_6_regression_5
+      title: Edited source everywhere
+      purpose: Verify edited source everywhere using only this workflow's accounts and records. For authenticated owner note-value checks, use the available full-note view or editor.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt6w1owner', email 'zt6w1owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt6w1owner' only if a display name is required and empty. For owner note checks from a collection, access the same saved record's private note through Saved or an available owner note view; still verify its membership in the named collection.
+      - 2. Publish and save 'zt6w1alpha source post' with note 'Keep edit note zt6w1'; create collections 'A zt6w1' and 'B zt6w1' and add the save to both.
+      - 3. Edit the original source post to 'zt6w1 revised source' and complete the edit through its provided action or autosave.
+      - 4. Reload Saved and both collections; each view’s current source preview or body must correspond to 'zt6w1 revised source'. Read the entry’s associated full current content if abbreviated; separately labeled edit history may contain earlier versions. Confirm private note 'Keep edit note zt6w1' and both original memberships remain.
+    iteration_6_delta_2:
+      id: iteration_6_delta_2
+      title: Deletion keeps note
+      purpose: Verify deletion keeps note using only this workflow's accounts and records. For authenticated owner note-value checks, use the available full-note view or editor.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt6w2owner', email 'zt6w2owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt6w2owner' only if a display name is required and empty.
+      - 2. Publish and save 'zt6w2alpha source post' with note 'Keep note zt6w2'; delete the source through its available owner delete action and complete any confirmation requested by the app.
+      - 3. Open Saved and reload; confirm its saved entry is clearly marked unavailable, retains private note 'Keep note zt6w2', and shows none of the deleted source text 'zt6w2alpha source post'.
+    iteration_6_delta_3:
+      id: iteration_6_delta_3
+      title: Deletion keeps memberships
+      purpose: Verify deletion keeps memberships using only this workflow's accounts and records. For authenticated owner note-value checks, use the available full-note view or editor.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt6w3owner', email 'zt6w3owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt6w3owner' only if a display name is required and empty. For owner note checks from a collection, access the same saved record's private note through Saved or an available owner note view; still verify its membership in the named collection.
+      - 2. Publish and save 'zt6w3alpha source post' with note 'Keep memberships zt6w3'; create 'A zt6w3' and 'B zt6w3' and add this saved post to both.
+      - 3. Delete the original source through an available owner delete action and complete any confirmation requested by the app.
+      - 4. Reload Saved and both collections; confirm one unavailable entry for this saved source remains in each view, private note 'Keep memberships zt6w3' is retained, and deleted source text 'zt6w3alpha source post' is absent.
+    iteration_6_delta_4:
+      id: iteration_6_delta_4
+      title: Remove unavailable entry
+      purpose: Verify remove unavailable entry using only this workflow's accounts and records.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt6w4owner', email 'zt6w4owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt6w4owner' only if a display name is required and empty.
+      - 2. Publish and save 'zt6w4alpha source post'; create 'A zt6w4' and 'B zt6w4' and add this save to both.
+      - 3. Delete the original source through an available owner delete action and complete any confirmation requested by the app.
+      - 4. Open Saved and both collections and confirm this saved source remains as an unavailable entry before removal.
+      - 5. Remove this unavailable saved entry through the available owner removal action.
+      - 6. Reload Saved and inspect any remaining owner collection views; confirm this owner’s saved entry and all its former memberships are gone. Do not require an emptied collection container to remain.
+    iteration_6_delta_5:
+      id: iteration_6_delta_5
+      title: Other saved post unaffected
+      purpose: Verify other saved post unaffected using only this workflow's accounts and records. For authenticated owner note-value checks, use the available full-note view or editor.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt6w5owner', email 'zt6w5owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt6w5owner' only if a display name is required and empty.
+      - 2. Publish and save 'zt6w5alpha source post' and 'zt6w5 retained source'; add private note 'Retain unrelated zt6w5' to the second save.
+      - 3. Create 'Mixed zt6w5' and add both saved posts.
+      - 4. Delete only source 'zt6w5alpha source post', complete any confirmation requested by the app, and remove only that source's unavailable saved entry.
+      - 5. Reload Saved and 'Mixed zt6w5'; confirm 'zt6w5 retained source' and note 'Retain unrelated zt6w5' remain with their original membership, while the removed unavailable entry is absent.
+      - 6. Open your public profile and the surviving original post detail; confirm 'zt6w5 retained source' remains unchanged.
+    iteration_6_delta_6:
+      id: iteration_6_delta_6
+      title: Note remains editable
+      purpose: Verify note remains editable using only this workflow's accounts and records. For authenticated owner note-value checks, use the available full-note view or editor.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt6w6owner', email 'zt6w6owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt6w6owner' only if a display name is required and empty.
+      - 2. Publish and save 'zt6w6alpha source post' with private note 'Before zt6w6'; delete its source through an available owner delete action and complete any confirmation requested by the app.
+      - 3. Open the unavailable saved entry and edit its retained private note to 'After zt6w6' and complete the note edit through its provided action or autosave.
+      - 4. Reload Saved and confirm note 'After zt6w6' persists beside an unavailable indicator without exposing the deleted source text.
+      - 5. Set this entry’s private note to exactly 500 copies of X; complete entry through its provided action or autosave and reload, then inspect the full persisted note through its owner view or editor and confirm exactly 500 X characters remain.
+      - 6. Attempt exactly 501 copies of Y and complete entry through the provided action or autosave if allowed, then reload; inspect the full persisted note through its owner view or editor and confirm its length does not exceed 500 characters and the unavailable state remains. Input limiting, rejection, or truncation are allowed without a required recovery value.
+    iteration_6_delta_7:
+      id: iteration_6_delta_7
+      title: Deletion does not leak content
+      purpose: Verify deletion does not leak content using only this workflow's accounts and records.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt6w7owner', email 'zt6w7owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt6w7owner' only if a display name is required and empty.
+      - 2. Publish and save 'zt6w7alpha source post'; create 'Deleted zt6w7' and add this save.
+      - 3. Delete this source through an available owner delete action and complete any confirmation requested by the app.
+      - 4. Reload Saved and 'Deleted zt6w7'; confirm each retains its unavailable saved entry without displaying any deleted source text 'zt6w7alpha source post' as content or preview.
+    iteration_6_delta_8:
+      id: iteration_6_delta_8
+      title: Other member save survives
+      purpose: Verify other member save survives using only this workflow's accounts and records. For authenticated owner note-value checks, use the available full-note view or editor.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt6w8owner', email 'zt6w8owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt6w8owner' only if a display name is required and empty. For owner note checks from a collection, access the same saved record's private note through Saved or an available owner note view; still verify its membership in the named collection.
+      - 2. Publish 'zt6w8alpha source post'.
+      - 3. Sign out if signed in, then register username 'zt6w8reader', email 'zt6w8reader@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt6w8reader' only if a display name is required and empty.
+      - 4. Open the public profile for username 'zt6w8owner' through available app links or navigation and save that source with note 'Reader note zt6w8'; create 'Reader collection zt6w8' and add the save.
+      - 5. Sign out if currently signed in, then sign in with username 'zt6w8owner' and password 'ZeeterPass123!'.
+      - 6. Save the same source, create 'Owner collection zt6w8', and add this owner's save; delete the source through an available owner delete action and complete any confirmation requested by the app.
+      - 7. Open Saved and confirm this owner's unavailable entry remains; remove only this owner's saved entry and confirm it is absent from Saved and 'Owner collection zt6w8'.
+      - 8. Sign out if currently signed in, then sign in with username 'zt6w8reader' and password 'ZeeterPass123!'.
+      - 9. Reload Saved and 'Reader collection zt6w8'; confirm the reader's unavailable saved entry, note 'Reader note zt6w8', and original membership remain, with no deleted source text.
+    iteration_6_regression_1:
+      id: iteration_6_regression_1
+      title: Ordinary post editing
+      purpose: Verify ordinary post editing using only this workflow's accounts and records.
+      is_regression: true
+      steps:
+      - 1. Sign out if signed in, then register username 'zt6w9owner', email 'zt6w9owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt6w9owner' only if a display name is required and empty.
+      - 2. Publish 'zt6w9alpha source post'. Edit it to 'Edited zt6w9alpha source post'.
+      - 3. Open your public profile and confirm the revised text. Delete the post and confirm it disappears from your profile.
+    iteration_6_regression_2:
+      id: iteration_6_regression_2
+      title: Sharing stays removed
+      purpose: Verify source-post changes do not restore public collection sharing.
+      is_regression: false
+      steps:
+      - 1. Sign out if signed in, then register username 'zt6w10owner', email 'zt6w10owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt6w10owner' only if a display name is required and empty.
+      - 2. Publish and save 'zt6w10alpha source post'; create 'Private zt6w10' and add the saved post.
+      - 3. Inspect Saved, its owner collection view, and available collection actions; confirm no action enables public sharing. Confirm the owner's private collection and source membership are visible and record the actual owning Saved app URL.
+      - 4. Sign out and visit that URL; confirm the owner's private collection name and contents are unavailable. Open the public profile for username 'zt6w10owner' through available app links or navigation and confirm its ordinary source post remains public.
+      - 5. As a guest, open /shared/zeeter-continuity and reload; confirm the retired collection and its memberships remain unavailable.
+      - 6. Sign out if signed in, then register username 'zt6w10reader', email 'zt6w10reader@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt6w10reader' only if a display name is required and empty.
+      - 7. Open /shared/zeeter-continuity and reload; confirm the retired collection and its memberships remain unavailable to this nonowner.
+    iteration_6_regression_3:
+      id: iteration_6_regression_3
+      title: Saved note privacy
+      purpose: Verify saved note privacy using only this workflow's accounts and records.
+      is_regression: true
+      steps:
+      - 1. Sign out if signed in, then register username 'zt6w11owner', email 'zt6w11owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt6w11owner' only if a display name is required and empty.
+      - 2. Publish and save 'zt6w11alpha source post' with note 'Private zt6w11'.
+      - 3. Sign out and register username 'zt6w11reader', email 'zt6w11reader@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt6w11reader' only if a display name is required and empty. Open the author's profile and post detail. Confirm 'Private zt6w11' is absent.
+    iteration_6_regression_4:
+      id: iteration_6_regression_4
+      title: Collection removal isolation
+      purpose: Verify collection removal isolation using only this workflow's accounts and records. For authenticated owner note-value checks, use the available full-note view or editor.
+      is_regression: true
+      steps:
+      - 1. Sign out if signed in, then register username 'zt6w12owner', email 'zt6w12owner@example.com', and password 'ZeeterPass123!'. Reach the home feed through available app actions; complete or skip profile setup if offered, keeping defaults and using 'zt6w12owner' only if a display name is required and empty. For owner note checks from a collection, access the same saved record's private note through Saved or an available owner note view; still verify its membership in the named collection.
+      - 2. Publish and save 'zt6w12alpha source post' with note 'Keep zt6w12'. Create collections 'A zt6w12' and 'B zt6w12'. Add it to 'A zt6w12' and 'B zt6w12'.
+      - 3. Remove it only from A. Confirm B retains the post and note, while A does not contain the post.
+    iteration_6_continuity_a:
+      id: iteration_6_continuity_a
+      title: Preserve earlier continuity A through deletion changes
+      purpose: Preserve earlier continuity A through deletion changes using generation-created continuity records; do not create or repair missing records. Open the app’s Saved area through its available entry point to manage saved posts and collections. Do not infer missing functionality from the baseline README. For authenticated owner note-value checks, use the available full-note view or editor. Count logical saves and memberships through available pagination or groups; repeated presentations are not extra records.
+      is_regression: false
+      steps:
+      - 1. Use this workflow's single fresh browser session. Sign in as the existing demo member ztcontinuity with password ZeeterPass123!. Do not sign out, create, edit, save, or repair continuity records during this check. For owner note checks from a collection, access the same saved record's private note through Saved or an available owner note view; still verify its membership in the named collection.
+      - 2. Open Saved and locate the existing source post 'Zeeter continuity A'. Confirm exactly one saved entry has private note 'Keep A'. Missing data is a failure; do not create replacements.
+      - 3. Open the existing 'Zeeter Continuity' collection. Confirm the same saved post and note are still members of that collection.
+      - 4. Reload and confirm the same existing saved entry and note remain. Open its original source post through available app links, search, or pagination and confirm its content remains 'Zeeter continuity A'.
+    iteration_6_continuity_b:
+      id: iteration_6_continuity_b
+      title: Preserve earlier continuity B through deletion changes
+      purpose: Preserve earlier continuity B through deletion changes using generation-created continuity records; do not create or repair missing records. Open the app’s Saved area through its available entry point to manage saved posts and collections. Do not infer missing functionality from the baseline README. For authenticated owner note-value checks, use the available full-note view or editor. Count logical saves and memberships through available pagination or groups; repeated presentations are not extra records.
+      is_regression: false
+      steps:
+      - 1. Use this workflow's single fresh browser session. Sign in as the existing demo member ztcontinuity with password ZeeterPass123!. Do not sign out, create, edit, save, or repair continuity records during this check. For owner note checks from a collection, access the same saved record's private note through Saved or an available owner note view; still verify its membership in the named collection.
+      - 2. Open Saved and locate the existing source post 'Zeeter continuity B'. Confirm exactly one saved entry has private note 'Keep B'. Missing data is a failure; do not create replacements.
+      - 3. Open the existing 'Zeeter Continuity' collection. Confirm the same saved post and note are still members of that collection.
+      - 4. Reload and confirm the same existing saved entry and note remain. Open its original source post through available app links, search, or pagination and confirm its content remains 'Zeeter continuity B'.

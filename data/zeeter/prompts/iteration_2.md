@@ -1,0 +1,5 @@
+Organize Saved posts into named private collections, with one post allowed in several collections and an Unfiled view for saved posts in none. Preserve all existing saves and notes; notes belong to the saved post, not its collection membership. Let owners create and rename collections, remove a post from one collection, or delete a collection without deleting saved posts, notes, or source posts; collection names must be nonblank and unique per owner.
+
+Keep the continuity member's two continuity saves and their notes unchanged; both must initially appear in Unfiled. Do not recreate or reset the demo records.
+
+Before the later sharing release, create a separate member ztlegacyprivate with email ztlegacyprivate@example.com and password ZeeterPass123!. This member owns one source post 'Zeeter legacy private source', saved with private note 'Legacy private note' as the single member of collection 'Zeeter Legacy Private'. Keep this existing private collection and its original source, save, membership, and note for the sharing migration.

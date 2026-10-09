@@ -1,0 +1,2 @@
+import { cn } from '../../lib/utils'
+export function Tabs({ options, value, onChange, className }) { return <div className={cn('inline-flex rounded-lg bg-muted p-1', className)}>{options.map((option) => <button key={option.value} className={cn('rounded-md px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors', value === option.value && 'bg-card text-foreground shadow-sm')} onClick={() => onChange(option.value)}>{option.label}</button>)}</div> }

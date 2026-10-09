@@ -1,0 +1,11 @@
+id: zeeter
+title: Zeeter Social Network
+base_task_id: zeeter
+app:
+  path: app
+generation_parameters:
+  email_service: false
+  stripe_service: false
+  anonymous_authentication: true
+workflow_contract:
+  kind: hard_arc_v1
