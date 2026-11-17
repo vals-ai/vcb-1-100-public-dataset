@@ -35,4 +35,4 @@ generated-app/
 - RPCs: `email_for_username(text)`, `username_available(text)`; triggers: `handle_new_user`, `notify_on_*`, `set_updated_at`
 - Storage bucket `avatars` (public read; users write only under `<uid>/`)
 
-Seeding: `cd frontend && npm install && npm run seed` (uses the service role key from `../.env`; safe to re-run).
+Seeding: `cd frontend && npm install --before="$(node -p 'new Date(Date.now() - 7 * 86400000).toISOString()')" && npm run seed` (uses the service role key from `../.env`; safe to re-run).
